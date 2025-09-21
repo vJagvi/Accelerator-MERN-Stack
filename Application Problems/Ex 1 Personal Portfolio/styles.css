@@ -1,0 +1,33 @@
+header {
+    justify-content: left;
+}
+
+nav {
+    justify-content: right;
+}
+
+.container {
+    display: flexbox;
+    flex-direction: row;
+}
+
+.item {
+    width: 480px
+}
+
+.btn {
+    background-color: teal;
+    border-radius: 5px;
+    border-color: blue;
+    color: white;
+}
+
+.btn:hover {
+    background-color: darkslateblue;
+}
+
+.btn:focus {
+    outline: 2px solid black;
+    outline-offset: 2px;
+}
+

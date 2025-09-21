@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title>Registration Page</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        <label for="name">Name: </label>
+        <input type="text" id="name" name="name" placeholder="Name"><br><br>
+    
+        <label for="password">Password: </label>
+        <input type="password" id="password" name="password" placeholder="Enter password"><br><br>
+    
+        <label for="email">Email: </label>
+        <input type="email" id="email" name="email" placeholder="Enter e-mail id"><br><br>
+        
+        <label>Gender: </label>
+        <input type="radio" name="gender" value="male"> Male
+        <input type="radio" name="gender" value="female"> Female<br><br>
+    
+        <label>Skills:</label><br>
+        <input type="checkbox" name="skills" value="Linux" id="skill-linux">
+        <label for="skill-linux">Linux</label><br>
+    
+        <input type="checkbox" name="skills" value="Python" id="skill-python">
+        <label for="skill-python">Python</label><br>
+    
+        <input type="checkbox" name="skills" value="Networking" id="skill-networking">
+        <label for="skill-networking">Networking</label><br><br>
+    
+        <label for="country">Country: </label>
+        <select id="country" name="country">
+            <option value="india">India</option>
+            <option value="usa">USA</option>
+        </select><br><br>
+    
+        <input type="submit" value="Submit">
+    </form>
+    
+</body>
+</html>

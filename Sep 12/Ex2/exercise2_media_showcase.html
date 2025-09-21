@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Exercise 2 – Media Showcase</title>
+  <style>
+    /* =========================
+       STUDENT TODO (CSS ONLY)
+       =========================
+       1) Hero: gradient background + mask vignette; clamp() for heading text.
+       2) Sticky top nav (position: sticky) with proper z-index.
+       3) Responsive images:
+          - <picture> in hero (art direction).
+          - Gallery images: object-fit: cover; use aspect-ratio to avoid CLS.
+          - srcset + sizes for various widths.
+       4) Gallery grid: auto-fit/minmax tiles with consistent gaps.
+       5) Add grayscale filter on tiles; remove on hover/focus with transitions.
+       6) Overlay label via ::after; absolute-positioned within tile.
+       7) Clip-path polygon on one featured tile.
+       8) CSS variables for accent colors and spacing tokens.
+       9) Accessibility: focus-visible outlines; contrast ≥ 4.5:1 for text.
+      10) Motion prefs: @media (prefers-reduced-motion: reduce) to disable transitions.
+    */
+
+:root {
+  --color-accent: #e76f51; /* Example accent color */
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+}
+
+
+.hero {
+  background: linear-gradient(135deg, #99d1cb 0%, #264653 100%);
+  mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%);
+  -webkit-mask-image: radial-gradient(circle, rgba(0,0,0,1) 60%, rgba(0,0,0,0.5) 80%, rgba(0,0,0,0) 100%);
+}
+
+.hero__text h1 {
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.topnav {
+  position: sticky;
+  top: 0;
+  background-color: lightblue;
+  z-index: 10
+}
+
+.tile__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease; 
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.tile:hover .tile__img,
+.tile:focus-within .tile__img {
+  filter: grayscale(0%);
+}
+
+.tile::after {
+  content: attr(data-label);
+  position: absolute;
+  bottom: var(--spacing-sm, 0.5rem);
+  left: var(--spacing-sm, 0.5rem);
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.9rem;
+  border-radius: var(--radius, 0.5rem);
+}
+
+.tile--featured {
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px dashed var(--color-accent);
+  outline-offset: 4px;
+}
+
+body {
+  background-color: var(--color-bg, #f9f9f9);
+  color: var(--color-text, #333333); /* Dark enough for good contrast */
+}
+
+a {
+  color: var(--color-primary, #2a9d8f); /* Ensure primary color is strong enough */
+}
+
+
+
+  </style>
+</head>
+<body>
+  <header class="topnav" role="navigation" aria-label="Top Navigation">
+    <a href="#" class="logo">MediaLab</a>
+    <nav class="topnav__links">
+      <a href="#">Home</a>
+      <a href="#">Gallery</a>
+      <a href="#">About</a>
+    </nav>
+  </header>
+
+  <section class="hero" role="region" aria-label="Hero">
+    <div class="hero__media">
+      <picture>
+        <source type="image/avif" srcset="https://picsum.photos/seed/hero/1600/900.avif" media="(min-width: 1024px)">
+        <source type="image/webp" srcset="https://picsum.photos/seed/hero/1200/675.webp"  media="(min-width: 768px)">
+        <img class="hero__img" src="https://picsum.photos/seed/hero/800/600.jpg" alt="Dramatic landscape at sunset">
+      </picture>
+    </div>
+    <div class="hero__text">
+      <h1>Experience Visual Stories</h1>
+      <p>High‑impact imagery, adaptive loading, and accessible motion.</p>
+    </div>
+  </section>
+
+  <main class="gallery" role="main">
+    <figure class="tile">
+      <img src="https://picsum.photos/id/1016/800/600" alt="River valley" class="tile__img">
+      <figcaption class="tile__caption">Valley</figcaption>
+    </figure>
+    <figure class="tile tile--featured">
+      <img src="https://picsum.photos/id/1035/800/600" alt="Forest canopy" class="tile__img">
+      <figcaption class="tile__caption">Canopy</figcaption>
+    </figure>
+    <figure class="tile">
+      <img src="https://picsum.photos/id/1025/800/600" alt="Country road" class="tile__img">
+      <figcaption class="tile__caption">Road</figcaption>
+    </figure>
+    <figure class="tile">
+      <img src="https://picsum.photos/id/1043/800/600" alt="Coastline" class="tile__img">
+      <figcaption class="tile__caption">Coast</figcaption>
+    </figure>
+    <figure class="tile">
+      <img src="https://picsum.photos/id/1039/800/600" alt="Mountain lake" class="tile__img">
+      <figcaption class="tile__caption">Lake</figcaption>
+    </figure>
+  </main>
+</body>
+</html>

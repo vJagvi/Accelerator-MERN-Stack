@@ -1,0 +1,13 @@
+.vertical {
+    a {display: block;}
+}
+
+.horizontal {
+    a {display: inline-block;}
+}
+
+.login-btn{
+    position: absolute;
+    top: 20px;
+    right: 30px
+}
