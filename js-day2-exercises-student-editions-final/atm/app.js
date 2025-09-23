@@ -14,10 +14,10 @@ function getMenuChoice() {
       return checkBalance();
       break;
     case 2:
-      return deposit();
+      return withdraw();
       break;
     case 3:
-      return withdraw();
+      return deposit();
       break;
     case 4:
       return;
