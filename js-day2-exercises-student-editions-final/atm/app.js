@@ -12,13 +12,10 @@ function getMenuChoice() {
   switch (choice) {
     case 1: 
       return checkBalance();
-      break;
     case 2:
       return withdraw();
-      break;
     case 3:
       return deposit();
-      break;
     case 4:
       return;
     default:
