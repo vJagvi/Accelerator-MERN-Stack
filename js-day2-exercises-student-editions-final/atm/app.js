@@ -17,9 +17,9 @@ function getMenuChoice() {
     case 3:
       return deposit();
     case 4:
-      return;
+      return exit;
     default:
-      prompt("Enter valid option: ");
+      alert("Enter valid option: (1..4)");
   }
 
 }
